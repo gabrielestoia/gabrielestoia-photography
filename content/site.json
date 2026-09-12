@@ -7,24 +7,15 @@
   "socials": [
     {
       "name": "Instagram",
-      "url": "https://instagram.com/"
+      "url": "https://www.instagram.com/inasiatravel_touroperator/"
     },
     {
       "name": "Facebook",
-      "url": "https://facebook.com/"
+      "url": "https://web.facebook.com/inasiatravel"
     }
   ],
   "stories": [
     {
-      "slug": "tibet",
-      "group": "Asia",
-      "title_en": "Title TBD",
-      "title_it": "Titolo da definire",
-      "location": "Tibet",
-      "year": "year TBD",
-      "cover": "",
-      "description_en": "",
-      "description_it": "",
       "items": [
         {
           "type": "photo",
@@ -49,18 +40,18 @@
           "caption_en": "Backstreet in the old quarter, at the end of the pilgrimage.",
           "caption_it": "Vicolo del quartiere vecchio, alla fine del pellegrinaggio."
         }
-      ]
-    },
-    {
-      "slug": "china",
-      "group": "Asia",
-      "title_en": "Title TBD",
-      "title_it": "Titolo da definire",
-      "location": "China",
-      "year": "year TBD",
-      "cover": "",
+      ],
+      "slug": "tibet",
       "description_en": "",
       "description_it": "",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "Tibet",
+      "cover": "",
+      "year": "year TBD",
+      "group": "Asia"
+    },
+    {
       "items": [
         {
           "type": "photo",
@@ -86,18 +77,18 @@
           "caption_en": "The old quarter being demolished.",
           "caption_it": "Il vecchio quartiere in demolizione."
         }
-      ]
-    },
-    {
-      "slug": "india",
-      "group": "Asia",
-      "title_en": "Title TBD",
-      "title_it": "Titolo da definire",
-      "location": "India",
-      "year": "year TBD",
-      "cover": "",
+      ],
+      "slug": "china",
       "description_en": "",
       "description_it": "",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "China",
+      "cover": "",
+      "year": "year TBD",
+      "group": "Asia"
+    },
+    {
       "items": [
         {
           "type": "photo",
@@ -123,7 +114,27 @@
           "caption_en": "Rickshaw puller on a break, Kolkata.",
           "caption_it": "Tiratore di risciò in pausa, Calcutta."
         }
-      ]
+      ],
+      "slug": "india",
+      "description_en": "",
+      "description_it": "",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "India",
+      "cover": "",
+      "year": "year TBD",
+      "group": "Asia"
+    },
+    {
+      "slug": "laos",
+      "description_en": "In the heart of southern Laos, along the slow waters of the Mekong and the islands of Si Phan Don, a photographic series captures life suspended between land and river. Fishermen cast nets at dawn through drifting mist, children leap from weathered wooden boats, and floating markets burst with color and voices. Khone Phapheng Falls roar in the background, while village women weave silk near incense-filled Buddhist temples. Each frame captures an ancient rhythm, far from modern time, where daily life becomes visual poetry — suspended in silence, water, and the golden light of dusk.",
+      "description_it": "Nel cuore del sud del Laos, tra le acque lente del Mekong e le isole di Si Phan Don, una serie fotografica racconta la vita sospesa tra terra e fiume. Pescatori all'alba lanciano reti tra la nebbia, bambini si tuffano da barche di legno scolorito, e i mercati galleggianti si animano di colori e voci. Le cascate di Khone Phapheng ruggiscono sullo sfondo, mentre nei villaggi le donne tessono seta accanto a templi buddisti avvolti nell'incenso. Ogni scatto cattura un ritmo antico, lontano dal tempo moderno, dove la quotidianità diventa poesia visiva, sospesa tra silenzio, acqua e luce dorata del tramonto.",
+      "title_en": "Test photo LAOS",
+      "title_it": "Test fotografia Laos",
+      "location": "laos",
+      "cover": "img/uploads/_mg_6936.jpg",
+      "year": "2018",
+      "group": "Asia"
     }
   ],
   "publications": [
