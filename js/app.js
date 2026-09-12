@@ -117,7 +117,6 @@
     img.alt = p.caption || s.title;
     var cap = document.getElementById('caption');
     cap.textContent = p.caption || '';
-    cap.style.display = p.caption ? '' : 'none';
     document.getElementById('counter').textContent = (current.i + 1) + ' / ' + s.photos.length;
   }
   function step(d) {
