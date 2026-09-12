@@ -1,0 +1,38 @@
+{
+  "slug": "india",
+  "group": "Asia",
+  "title_en": "Title TBD",
+  "title_it": "Titolo da definire",
+  "location": "India",
+  "year": "year TBD",
+  "cover": "",
+  "description_en": "",
+  "description_it": "",
+  "items": [
+    {
+      "type": "photo",
+      "image": "img/india/01.jpg",
+      "caption_en": "Chicken market, Kolkata.",
+      "caption_it": "Mercato del pollo, Calcutta."
+    },
+    {
+      "type": "photo",
+      "image": "img/india/02.jpg",
+      "caption_en": "",
+      "caption_it": ""
+    },
+    {
+      "type": "photo",
+      "image": "img/india/03.jpg",
+      "caption_en": "",
+      "caption_it": ""
+    },
+    {
+      "type": "photo",
+      "image": "img/india/04.jpg",
+      "caption_en": "Rickshaw puller on a break, Kolkata.",
+      "caption_it": "Tiratore di risciò in pausa, Calcutta."
+    }
+  ],
+  "order": 30
+}

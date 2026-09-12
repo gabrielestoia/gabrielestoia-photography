@@ -388,15 +388,23 @@
   }
   window.addEventListener('hashchange', route);
 
+  function byOrder(a, b) { return (Number(a.order) || 999) - (Number(b.order) || 999); }
+
   var bust = '?v=' + Date.now();
   Promise.all([
     fetch('content/settings.json' + bust),
-    fetch('content/stories.json' + bust),
-    fetch('content/publications.json' + bust)
+    fetch('content/bundle.json' + bust)
   ]).then(function (rs) {
     return Promise.all(rs.map(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); }));
   }).then(function (js) {
-    CONTENT = Object.assign({}, js[0], { stories: js[1].stories || [] }, { publications: js[2].publications || [] });
+    CONTENT = Object.assign({}, js[0], js[1]);
+    CONTENT.stories = (CONTENT.stories || []).slice().sort(byOrder);
+    CONTENT.publications = (CONTENT.publications || []).slice().sort(byOrder);
     route();
-  }).catch(function () { CONTENT = SITE; route(); });
+  }).catch(function () {
+    CONTENT = JSON.parse(JSON.stringify(SITE));
+    CONTENT.stories = (CONTENT.stories || []).slice().sort(byOrder);
+    CONTENT.publications = (CONTENT.publications || []).slice().sort(byOrder);
+    route();
+  });
 })();

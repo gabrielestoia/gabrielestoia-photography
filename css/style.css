@@ -95,8 +95,8 @@ img{display:block;max-width:100%}
 
 .viewer{
   display:flex;align-items:center;gap:8px;position:relative;
-  height:calc(100vh - 106px);
-  padding:2px 16px;
+  height:calc(100vh - 118px);
+  padding:14px 16px 2px;
 }
 .viewer-close{
   position:absolute;top:14px;right:20px;z-index:3;

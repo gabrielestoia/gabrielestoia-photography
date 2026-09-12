@@ -28,66 +28,62 @@ collections:
 
   - name: "stories"
     label: "2. Stories"
-    files:
-      - name: "stories"
-        label: "Stories"
-        file: "content/stories.json"
-        fields:
-          - label: "Stories (drag to reorder — the sidebar follows this order)"
-            name: "stories"
-            widget: "list"
-            collapsed: true
-            minimize_collapsed: true
-            summary: "{{fields.title_en}} — {{fields.location}} {{fields.year}}"
+    folder: "content/stories"
+    create: true
+    format: json
+    extension: json
+    slug: "{{slug}}"
+    summary: "{{title_en}} — {{location}} {{year}}"
+    sortable_fields: [order, title_en, year]
+    fields:
+      - { label: "Order (sidebar position: 1, 2, 3 ...)", name: "order", widget: "number", default: 10 }
+      - { label: "Story title (English)", name: "title_en", widget: "string" }
+      - { label: "Titolo (Italiano)", name: "title_it", widget: "string" }
+      - { label: "Slug (address: lowercase, no spaces)", name: "slug", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Group (sidebar section, optional)", name: "group", widget: "string", required: false }
+      - { label: "Description (English)", name: "description_en", widget: "text", required: false,
+         hint: "Shown as the opening text slide of the story" }
+      - { label: "Descrizione (Italiano)", name: "description_it", widget: "text", required: false,
+         hint: "Mostrata come slide di apertura della storia" }
+      - { label: "Cover image (optional - defaults to the first photo)",
+          name: "cover", widget: "image", required: false }
+      - label: "Photos and text slides (photo count is calculated automatically)"
+        name: "items"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.image}}{{fields.text_en}}"
+        typeKey: "type"
+        types:
+          - label: "Photo"
+            name: "photo"
+            widget: "object"
             fields:
-              - { label: "Story title (English)", name: "title_en", widget: "string" }
-              - { label: "Titolo (Italiano)", name: "title_it", widget: "string" }
-              - { label: "Slug (address: lowercase, no spaces)", name: "slug", widget: "string" }
-              - { label: "Location", name: "location", widget: "string" }
-              - { label: "Year", name: "year", widget: "string" }
-              - { label: "Group (sidebar section, optional)", name: "group", widget: "string", required: false }
-              - { label: "Description (English)", name: "description_en", widget: "text", required: false,
-                 hint: "Shown as the opening text slide of the story" }
-              - { label: "Descrizione (Italiano)", name: "description_it", widget: "text", required: false,
-                 hint: "Mostrata come slide di apertura della storia" }
-              - { label: "Cover image (optional - defaults to the first photo)",
-                  name: "cover", widget: "image", required: false }
-              - label: "Photos and text slides (photo count is calculated automatically)"
-                name: "items"
-                widget: "list"
-                typeKey: "type"
-                types:
-                  - label: "Photo"
-                    name: "photo"
-                    widget: "object"
-                    fields:
-                      - { label: "Image", name: "image", widget: "image" }
-                      - { label: "Caption (English)", name: "caption_en", widget: "string", required: false }
-                      - { label: "Didascalia (Italiano)", name: "caption_it", widget: "string", required: false }
-                  - label: "Text slide"
-                    name: "slide"
-                    widget: "object"
-                    fields:
-                      - { label: "Text (English)", name: "text_en", widget: "text", required: false }
-                      - { label: "Testo (Italiano)", name: "text_it", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Caption (English)", name: "caption_en", widget: "string", required: false }
+              - { label: "Didascalia (Italiano)", name: "caption_it", widget: "string", required: false }
+          - label: "Text slide"
+            name: "slide"
+            widget: "object"
+            fields:
+              - { label: "Text (English)", name: "text_en", widget: "text", required: false }
+              - { label: "Testo (Italiano)", name: "text_it", widget: "text", required: false }
 
   - name: "publications"
     label: "3. Publications"
-    files:
-      - name: "publications"
-        label: "Publications"
-        file: "content/publications.json"
-        fields:
-          - label: "Publications (drag to reorder)"
-            name: "publications"
-            widget: "list"
-            collapsed: true
-            minimize_collapsed: true
-            summary: "{{fields.magazine}} — {{fields.article_title}} ({{fields.date}})"
-            fields:
-              - { label: "Related story title", name: "story_title", widget: "string", required: false }
-              - { label: "Magazine", name: "magazine", widget: "string" }
-              - { label: "Article title", name: "article_title", widget: "string" }
-              - { label: "Publication date", name: "date", widget: "string" }
-              - { label: "Country", name: "country", widget: "string", required: false }
-              - { label: "File (image or PDF)", name: "file", widget: "file", required: false }
+    folder: "content/publications"
+    create: true
+    format: json
+    extension: json
+    slug: "{{slug}}"
+    summary: "{{magazine}} — {{article_title}} ({{date}})"
+    sortable_fields: [order, date, magazine]
+    fields:
+      - { label: "Order (list position: 1, 2, 3 ...)", name: "order", widget: "number", default: 10 }
+      - { label: "Related story title", name: "story_title", widget: "string", required: false }
+      - { label: "Magazine", name: "magazine", widget: "string" }
+      - { label: "Article title", name: "article_title", widget: "string" }
+      - { label: "Publication date", name: "date", widget: "string" }
+      - { label: "Country", name: "country", widget: "string", required: false }
+      - { label: "File (image or PDF)", name: "file", widget: "file", required: false }

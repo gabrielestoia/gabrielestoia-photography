@@ -1,0 +1,129 @@
+{
+  "stories": [
+    {
+      "slug": "china",
+      "group": "Asia",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "China",
+      "year": "year TBD",
+      "cover": "",
+      "description_en": "",
+      "description_it": "",
+      "items": [
+        {
+          "type": "photo",
+          "image": "img/cina/01.jpg",
+          "caption_en": "Kitchen of a halal restaurant, Muslim quarter of Xi'an.",
+          "caption_it": "Cucina di un ristorante halal, quartiere musulmano di Xi'an."
+        },
+        {
+          "type": "photo",
+          "image": "img/cina/02.jpg",
+          "caption_en": "",
+          "caption_it": ""
+        },
+        {
+          "type": "photo",
+          "image": "img/cina/03.jpg",
+          "caption_en": "",
+          "caption_it": ""
+        },
+        {
+          "type": "photo",
+          "image": "img/cina/04.jpg",
+          "caption_en": "The old quarter being demolished.",
+          "caption_it": "Il vecchio quartiere in demolizione."
+        }
+      ],
+      "order": 20
+    },
+    {
+      "slug": "india",
+      "group": "Asia",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "India",
+      "year": "year TBD",
+      "cover": "",
+      "description_en": "",
+      "description_it": "",
+      "items": [
+        {
+          "type": "photo",
+          "image": "img/india/01.jpg",
+          "caption_en": "Chicken market, Kolkata.",
+          "caption_it": "Mercato del pollo, Calcutta."
+        },
+        {
+          "type": "photo",
+          "image": "img/india/02.jpg",
+          "caption_en": "",
+          "caption_it": ""
+        },
+        {
+          "type": "photo",
+          "image": "img/india/03.jpg",
+          "caption_en": "",
+          "caption_it": ""
+        },
+        {
+          "type": "photo",
+          "image": "img/india/04.jpg",
+          "caption_en": "Rickshaw puller on a break, Kolkata.",
+          "caption_it": "Tiratore di risciò in pausa, Calcutta."
+        }
+      ],
+      "order": 30
+    },
+    {
+      "slug": "tibet",
+      "group": "Asia",
+      "title_en": "Title TBD",
+      "title_it": "Titolo da definire",
+      "location": "Tibet",
+      "year": "year TBD",
+      "cover": "",
+      "description_en": "Three weeks in Lhasa, following the pilgrims' circuit around the Jokhang temple. A demo description: it now opens the story as a text slide.",
+      "description_it": "Tre settimane a Lhasa, seguendo il percorso dei pellegrini intorno al tempio Jokhang. Una descrizione dimostrativa: ora apre la storia come slide di testo.",
+      "items": [
+        {
+          "type": "photo",
+          "image": "img/tibet/01.jpg",
+          "caption_en": "Pilgrims walking the Barkhor circuit, Lhasa.",
+          "caption_it": "Pellegrine lungo il percorso del Barkhor, Lhasa."
+        },
+        {
+          "type": "slide",
+          "text_en": "A demo text slide: use it between photos to pause the sequence and add context.",
+          "text_it": "Una slide di testo dimostrativa: usala tra le foto per fermare la sequenza e aggiungere contesto."
+        },
+        {
+          "type": "photo",
+          "image": "img/tibet/02.jpg",
+          "caption_en": "",
+          "caption_it": ""
+        },
+        {
+          "type": "photo",
+          "image": "img/tibet/03.jpg",
+          "caption_en": "Backstreet in the old quarter, at the end of the pilgrimage.",
+          "caption_it": "Vicolo del quartiere vecchio, alla fine del pellegrinaggio."
+        }
+      ],
+      "order": 10
+    }
+  ],
+  "publications": [
+    {
+      "story_title": "",
+      "magazine": "Outlet",
+      "article_title": "Article title",
+      "date": "Year",
+      "country": "",
+      "file": "",
+      "order": 10,
+      "slug": "pub-1"
+    }
+  ]
+}

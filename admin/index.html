@@ -10,84 +10,63 @@
 <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
 <script>
 (function () {
-  if (!window.CMS) return;
+  if (!window.CMS || !window.React) return;
+  var e = React.createElement;
 
   var BX = { fontFamily: "-apple-system,'Segoe UI',Roboto,Helvetica,sans-serif",
-             padding: '28px', lineHeight: 1.55, color: '#1c1b19', maxWidth: '760px' };
-  var MUT = { color: '#777', fontSize: '13px' };
-  var IMG = { maxWidth: '100%', maxHeight: '260px', display: 'block',
-              margin: '12px 0', borderRadius: '4px' };
+             padding: '28px', lineHeight: 1.55, color: '#1c1b19', maxWidth: '640px' };
+  var MUT = { color: '#888', fontSize: '13px' };
 
-  function srcOf(props, v) {
-    if (!v) return '';
-    try { var a = props.getAsset(v); if (a && a.url) return a.url; } catch (e) {}
-    return v;
-  }
+  function g(d, k) { return d && d.get ? (d.get(k) || '') : ''; }
   function toArr(v) {
     if (!v) return [];
     if (Array.isArray(v)) return v;
-    if (v.toJS) { try { return v.toJS() || []; } catch (e) { return []; } }
+    if (v.toJS) { try { return v.toJS() || []; } catch (err) { return []; } }
     return [];
   }
 
-  if (window.React) {
-    var e = React.createElement;
+  CMS.registerPreviewTemplate('stories', function (props) {
+    var d = props.entry.getIn(['data']);
+    var items = toArr(d && d.get ? d.get('items') : []);
+    var nPhotos = items.filter(function (it) { return it.type !== 'slide'; }).length;
+    var nSlides = items.length - nPhotos;
+    return e('div', { style: BX },
+      e('div', { style: { fontSize: '22px', fontWeight: 700 } },
+        String(g(d, 'title_en') || g(d, 'title_it') || '(no title)')),
+      e('div', { style: MUT },
+        [g(d, 'location'), g(d, 'year')].filter(Boolean).join(' \u00b7 ')),
+      (g(d, 'description_en') || g(d, 'description_it')) ?
+        e('p', { style: { fontStyle: 'italic', color: '#555', margin: '12px 0 0' } },
+          String(g(d, 'description_en') || g(d, 'description_it')).slice(0, 240)) : null,
+      e('p', { style: MUT },
+        nPhotos + ' photo' + (nPhotos === 1 ? '' : 's') +
+        (nSlides ? ' \u00b7 ' + nSlides + ' text slide' + (nSlides === 1 ? '' : 's') : '')),
+      e('p', { style: { color: '#bbb', fontSize: '12px', marginTop: '18px' } },
+        'Images are not previewed here \u2014 check the live site.'));
+  });
 
-    var StoriesPreview = function (props) {
-      var arr = toArr(props.entry.getIn(['data', 'stories']));
-      return e('div', { style: BX }, arr.map(function (s, i) {
-        var items = toArr(s.items);
-        var meta = [s.location, s.year].filter(Boolean).join(' \u00b7 ');
-        return e('div', { key: i, style: { marginBottom: '30px', paddingBottom: '18px', borderBottom: '1px solid #e5e2dc' } },
-          e('div', { style: { fontSize: '21px', fontWeight: 700 } }, s.title_en || s.title_it || '(no title)'),
-          meta ? e('div', { style: MUT }, meta) : null,
-          (s.description_en || s.description_it) ? e('div', { style: { fontStyle: 'italic', margin: '10px 0', color: '#444' } },
-            (s.description_en || s.description_it).slice(0, 300)) : null,
-          items.map(function (it, j) {
-            if (it.type === 'slide') {
-              return e('div', { key: j, style: { fontStyle: 'italic', margin: '12px 0', color: '#444' } },
-                       (it.text_en || it.text_it || '').slice(0, 300));
-            }
-            return e('div', { key: j },
-              it.image ? e('img', { src: srcOf(props, it.image), style: IMG }) : null,
-              it.caption_en ? e('div', { style: MUT }, it.caption_en) : null);
-          }));
-      }));
-    };
-    CMS.registerPreviewTemplate('stories', StoriesPreview);
+  CMS.registerPreviewTemplate('publications', function (props) {
+    var d = props.entry.getIn(['data']);
+    var meta = [g(d, 'magazine'), g(d, 'date'), g(d, 'country')].filter(Boolean).join(' \u00b7 ');
+    return e('div', { style: BX },
+      e('div', { style: { fontSize: '22px', fontWeight: 700 } }, String(g(d, 'magazine') || '(magazine)')),
+      e('div', { style: { fontSize: '15px', margin: '4px 0' } }, String(g(d, 'article_title'))),
+      e('div', { style: MUT }, meta),
+      g(d, 'file') ? e('p', { style: MUT },
+        (/\.pdf$/i.test(String(g(d, 'file'))) ? 'PDF attached: ' : 'Image attached: ') + String(g(d, 'file'))) : null);
+  });
 
-    var PubsPreview = function (props) {
-      var arr = toArr(props.entry.getIn(['data', 'publications']));
-      return e('div', { style: BX }, arr.map(function (p, i) {
-        var meta = [p.magazine, p.date, p.country].filter(Boolean).join(' \u00b7 ');
-        return e('div', { key: i, style: { marginBottom: '24px', paddingBottom: '14px', borderBottom: '1px solid #e5e2dc' } },
-          e('div', { style: { fontSize: '19px', fontWeight: 700 } }, p.magazine || '(magazine)'),
-          e('div', { style: { fontSize: '15px', margin: '2px 0' } }, p.article_title || ''),
-          e('div', { style: MUT }, meta),
-          p.file ? e('div', { style: MUT },
-            (/\.pdf$/i.test(p.file) ? 'PDF: ' : 'Image: ') + p.file) : null,
-          (!/\.pdf$/i.test(p.file) && p.file) ? e('img', { src: srcOf(props, p.file), style: IMG }) : null);
-      }));
-    };
-    CMS.registerPreviewTemplate('publications', PubsPreview);
-
-    var SettingsPreview = function (props) {
-      var d = props.entry.getIn(['data']);
-      var g = function (k) { var v = d && d.get ? d.get(k) : d[k]; return v || ''; };
-      var socials = toArr(g('socials'));
-      return e('div', { style: BX },
-        e('div', { style: { fontSize: '19px', fontWeight: 700 } }, String(g('name'))),
-        e('div', { style: MUT }, String(g('email'))),
-        e('h3', null, 'Bio (EN)'), e('p', null, String(g('bio_en')).slice(0, 400)),
-        e('h3', null, 'Bio (IT)'), e('p', null, String(g('bio_it')).slice(0, 400)),
-        e('h3', null, 'Footer'), e('p', { style: MUT }, String(g('footer'))),
-        e('h3', null, 'Socials'),
-        e('ul', null, socials.map(function (s, i) {
-          return e('li', { key: i }, String(s.name) + ' — ' + String(s.url));
-        })));
-    };
-    CMS.registerPreviewTemplate('settings', SettingsPreview);
-  }
+  CMS.registerPreviewTemplate('settings', function (props) {
+    var d = props.entry.getIn(['data']);
+    var socials = toArr(d && d.get ? d.get('socials') : []);
+    return e('div', { style: BX },
+      e('div', { style: { fontSize: '20px', fontWeight: 700 } }, String(g(d, 'name'))),
+      e('div', { style: MUT }, String(g(d, 'email'))),
+      e('p', { style: { marginTop: '12px' } }, String(g(d, 'bio_en')).slice(0, 300)),
+      e('p', { style: MUT }, String(g(d, 'footer'))),
+      e('p', { style: MUT },
+        socials.map(function (s) { return String(s.name); }).join(' \u00b7 ') || 'no socials'));
+  });
 })();
 </script>
 </body>

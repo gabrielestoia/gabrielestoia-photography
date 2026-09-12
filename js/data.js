@@ -33,6 +33,7 @@ const SITE = {
   stories: [
     {
       slug: "tibet",
+      order: 10,
       group: "Asia",
       title_en: "Title TBD",
       title_it: "Titolo da definire",
@@ -56,6 +57,7 @@ const SITE = {
     },
     {
       slug: "china",
+      order: 20,
       group: "Asia",
       title_en: "Title TBD",
       title_it: "Titolo da definire",
@@ -77,6 +79,7 @@ const SITE = {
     },
     {
       slug: "india",
+      order: 30,
       group: "Asia",
       title_en: "Title TBD",
       title_it: "Titolo da definire",
