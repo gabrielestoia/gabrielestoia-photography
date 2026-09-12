@@ -228,6 +228,13 @@
     if (!s) { location.hash = '#/stories'; return; }
     current.story = s;
     current.items = itemsOf(s);
+    var dEn = (s.description_en || '').trim(), dIt = (s.description_it || '').trim();
+    if (dEn || dIt) {
+      current.items = [{
+        type: 'slide', image: '', caption_en: '', caption_it: '',
+        text_en: dEn, text_it: dIt
+      }].concat(current.items);
+    }
     current.i = 0;
 
     var preloads = current.items.map(function (it, idx) {
@@ -235,9 +242,7 @@
       return '<img src="' + esc(it.image) + '" alt="" loading="lazy" data-idx="' + idx + '" style="display:none">';
     }).join('');
 
-    var intro = T(s, 'description');
     app.innerHTML =
-      (intro ? '<div class="story-head"><p class="story-intro">' + esc(intro) + '</p></div>' : '') +
       '<div class="viewer">' +
         '<button class="icon-btn nav-arrow" id="prev" aria-label="' + esc(ui('prev')) + '">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
@@ -383,8 +388,15 @@
   }
   window.addEventListener('hashchange', route);
 
-  fetch('content/site.json', { cache: 'no-cache' })
-    .then(function (r) { if (!r.ok) throw new Error('no content'); return r.json(); })
-    .then(function (j) { CONTENT = j; route(); })
-    .catch(function () { CONTENT = SITE; route(); });
+  var bust = '?v=' + Date.now();
+  Promise.all([
+    fetch('content/settings.json' + bust),
+    fetch('content/stories.json' + bust),
+    fetch('content/publications.json' + bust)
+  ]).then(function (rs) {
+    return Promise.all(rs.map(function (r) { if (!r.ok) throw new Error('missing'); return r.json(); }));
+  }).then(function (js) {
+    CONTENT = Object.assign({}, js[0], { stories: js[1].stories || [] }, { publications: js[2].publications || [] });
+    route();
+  }).catch(function () { CONTENT = SITE; route(); });
 })();

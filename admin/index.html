@@ -8,5 +8,87 @@
 </head>
 <body>
 <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+<script>
+(function () {
+  if (!window.CMS) return;
+
+  var BX = { fontFamily: "-apple-system,'Segoe UI',Roboto,Helvetica,sans-serif",
+             padding: '28px', lineHeight: 1.55, color: '#1c1b19', maxWidth: '760px' };
+  var MUT = { color: '#777', fontSize: '13px' };
+  var IMG = { maxWidth: '100%', maxHeight: '260px', display: 'block',
+              margin: '12px 0', borderRadius: '4px' };
+
+  function srcOf(props, v) {
+    if (!v) return '';
+    try { var a = props.getAsset(v); if (a && a.url) return a.url; } catch (e) {}
+    return v;
+  }
+  function toArr(v) {
+    if (!v) return [];
+    if (Array.isArray(v)) return v;
+    if (v.toJS) { try { return v.toJS() || []; } catch (e) { return []; } }
+    return [];
+  }
+
+  if (window.React) {
+    var e = React.createElement;
+
+    var StoriesPreview = function (props) {
+      var arr = toArr(props.entry.getIn(['data', 'stories']));
+      return e('div', { style: BX }, arr.map(function (s, i) {
+        var items = toArr(s.items);
+        var meta = [s.location, s.year].filter(Boolean).join(' \u00b7 ');
+        return e('div', { key: i, style: { marginBottom: '30px', paddingBottom: '18px', borderBottom: '1px solid #e5e2dc' } },
+          e('div', { style: { fontSize: '21px', fontWeight: 700 } }, s.title_en || s.title_it || '(no title)'),
+          meta ? e('div', { style: MUT }, meta) : null,
+          (s.description_en || s.description_it) ? e('div', { style: { fontStyle: 'italic', margin: '10px 0', color: '#444' } },
+            (s.description_en || s.description_it).slice(0, 300)) : null,
+          items.map(function (it, j) {
+            if (it.type === 'slide') {
+              return e('div', { key: j, style: { fontStyle: 'italic', margin: '12px 0', color: '#444' } },
+                       (it.text_en || it.text_it || '').slice(0, 300));
+            }
+            return e('div', { key: j },
+              it.image ? e('img', { src: srcOf(props, it.image), style: IMG }) : null,
+              it.caption_en ? e('div', { style: MUT }, it.caption_en) : null);
+          }));
+      }));
+    };
+    CMS.registerPreviewTemplate('stories', StoriesPreview);
+
+    var PubsPreview = function (props) {
+      var arr = toArr(props.entry.getIn(['data', 'publications']));
+      return e('div', { style: BX }, arr.map(function (p, i) {
+        var meta = [p.magazine, p.date, p.country].filter(Boolean).join(' \u00b7 ');
+        return e('div', { key: i, style: { marginBottom: '24px', paddingBottom: '14px', borderBottom: '1px solid #e5e2dc' } },
+          e('div', { style: { fontSize: '19px', fontWeight: 700 } }, p.magazine || '(magazine)'),
+          e('div', { style: { fontSize: '15px', margin: '2px 0' } }, p.article_title || ''),
+          e('div', { style: MUT }, meta),
+          p.file ? e('div', { style: MUT },
+            (/\.pdf$/i.test(p.file) ? 'PDF: ' : 'Image: ') + p.file) : null,
+          (!/\.pdf$/i.test(p.file) && p.file) ? e('img', { src: srcOf(props, p.file), style: IMG }) : null);
+      }));
+    };
+    CMS.registerPreviewTemplate('publications', PubsPreview);
+
+    var SettingsPreview = function (props) {
+      var d = props.entry.getIn(['data']);
+      var g = function (k) { var v = d && d.get ? d.get(k) : d[k]; return v || ''; };
+      var socials = toArr(g('socials'));
+      return e('div', { style: BX },
+        e('div', { style: { fontSize: '19px', fontWeight: 700 } }, String(g('name'))),
+        e('div', { style: MUT }, String(g('email'))),
+        e('h3', null, 'Bio (EN)'), e('p', null, String(g('bio_en')).slice(0, 400)),
+        e('h3', null, 'Bio (IT)'), e('p', null, String(g('bio_it')).slice(0, 400)),
+        e('h3', null, 'Footer'), e('p', { style: MUT }, String(g('footer'))),
+        e('h3', null, 'Socials'),
+        e('ul', null, socials.map(function (s, i) {
+          return e('li', { key: i }, String(s.name) + ' — ' + String(s.url));
+        })));
+    };
+    CMS.registerPreviewTemplate('settings', SettingsPreview);
+  }
+})();
+</script>
 </body>
 </html>

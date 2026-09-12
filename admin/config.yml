@@ -6,35 +6,39 @@ media_folder: "img/uploads"
 public_folder: "img/uploads"
 
 collections:
-  - name: "site"
-    label: "Site content"
+  - name: "settings"
+    label: "1. Settings"
     files:
-      - name: "content"
-        label: "Site content"
-        file: "content/site.json"
-        description: "Stories, publications, bio, footer, social links"
+      - name: "general"
+        label: "General settings"
+        file: "content/settings.json"
         fields:
           - { label: "Your name", name: "name", widget: "string" }
           - { label: "Contact email", name: "email", widget: "string" }
-
           - { label: "Bio (English)", name: "bio_en", widget: "text" }
-          - { label: "Bio (Italian)", name: "bio_it", widget: "text" }
-
+          - { label: "Bio (Italiano)", name: "bio_it", widget: "text" }
           - { label: "Footer text", name: "footer", widget: "string",
              hint: "e.g. All content \u00a9 Gabriele Stoia. All rights reserved." }
-
-          - label: "Social links (shown in the footer)"
+          - label: "Social links (shown in the footer, above the copyright)"
             name: "socials"
             widget: "list"
             fields:
               - { label: "Label", name: "name", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
 
-          - label: "Stories"
+  - name: "stories"
+    label: "2. Stories"
+    files:
+      - name: "stories"
+        label: "Stories"
+        file: "content/stories.json"
+        fields:
+          - label: "Stories (drag to reorder — the sidebar follows this order)"
             name: "stories"
             widget: "list"
-            label_singular: "story"
-            summary: "{{fields.title_en}} ({{fields.location}} {{fields.year}})"
+            collapsed: true
+            minimize_collapsed: true
+            summary: "{{fields.title_en}} — {{fields.location}} {{fields.year}}"
             fields:
               - { label: "Story title (English)", name: "title_en", widget: "string" }
               - { label: "Titolo (Italiano)", name: "title_it", widget: "string" }
@@ -42,9 +46,11 @@ collections:
               - { label: "Location", name: "location", widget: "string" }
               - { label: "Year", name: "year", widget: "string" }
               - { label: "Group (sidebar section, optional)", name: "group", widget: "string", required: false }
-              - { label: "Description (English)", name: "description_en", widget: "text", required: false }
-              - { label: "Descrizione (Italiano)", name: "description_it", widget: "text", required: false }
-              - { label: "Cover image (optional — defaults to the first photo)",
+              - { label: "Description (English)", name: "description_en", widget: "text", required: false,
+                 hint: "Shown as the opening text slide of the story" }
+              - { label: "Descrizione (Italiano)", name: "description_it", widget: "text", required: false,
+                 hint: "Mostrata come slide di apertura della storia" }
+              - { label: "Cover image (optional - defaults to the first photo)",
                   name: "cover", widget: "image", required: false }
               - label: "Photos and text slides (photo count is calculated automatically)"
                 name: "items"
@@ -65,10 +71,18 @@ collections:
                       - { label: "Text (English)", name: "text_en", widget: "text", required: false }
                       - { label: "Testo (Italiano)", name: "text_it", widget: "text", required: false }
 
-          - label: "Publications"
+  - name: "publications"
+    label: "3. Publications"
+    files:
+      - name: "publications"
+        label: "Publications"
+        file: "content/publications.json"
+        fields:
+          - label: "Publications (drag to reorder)"
             name: "publications"
             widget: "list"
-            label_singular: "publication"
+            collapsed: true
+            minimize_collapsed: true
             summary: "{{fields.magazine}} — {{fields.article_title}} ({{fields.date}})"
             fields:
               - { label: "Related story title", name: "story_title", widget: "string", required: false }

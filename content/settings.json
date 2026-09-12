@@ -1,0 +1,17 @@
+{
+  "name": "Gabriele Stoia",
+  "email": "contact@gabrielestoia.com",
+  "footer": "All content © Gabriele Stoia. All rights reserved.",
+  "bio_en": "Photographer. Reportage in a dozen countries since 2011. Some of the work published in Italian and international outlets.",
+  "bio_it": "Fotografo. Reportage in una dozzina di paesi dal 2011. Alcuni lavori pubblicati su testate italiane e internazionali.",
+  "socials": [
+    {
+      "name": "Instagram",
+      "url": "https://instagram.com/"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://facebook.com/"
+    }
+  ]
+}

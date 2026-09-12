@@ -39,8 +39,8 @@ const SITE = {
       location: "Tibet",
       year: "year TBD",
       cover: "",
-      description_en: "",
-      description_it: "",
+      description_en: "Three weeks in Lhasa, following the pilgrims' circuit around the Jokhang temple. A demo description: it now opens the story as a text slide.",
+      description_it: "Tre settimane a Lhasa, seguendo il percorso dei pellegrini intorno al tempio Jokhang. Una descrizione dimostrativa: ora apre la storia come slide di testo.",
       items: [
         { type: "photo", image: "img/tibet/01.jpg",
           caption_en: "Pilgrims walking the Barkhor circuit, Lhasa.",
