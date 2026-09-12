@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "img/uploads"
+
+collections:
+  - name: "site"
+    label: "Site content"
+    files:
+      - name: "content"
+        label: "Site content"
+        file: "content/site.json"
+        description: "Stories, publications, bio, footer, social links"
+        fields:
+          - { label: "Your name", name: "name", widget: "string" }
+          - { label: "Contact email", name: "email", widget: "string" }
+
+          - { label: "Bio (English)", name: "bio_en", widget: "text" }
+          - { label: "Bio (Italian)", name: "bio_it", widget: "text" }
+
+          - { label: "Footer text", name: "footer", widget: "string",
+             hint: "e.g. All content \u00a9 Gabriele Stoia. All rights reserved." }
+
+          - label: "Social links (shown in the footer)"
+            name: "socials"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+          - label: "Stories"
+            name: "stories"
+            widget: "list"
+            label_singular: "story"
+            summary: "{{fields.title_en}} ({{fields.location}} {{fields.year}})"
+            fields:
+              - { label: "Story title (English)", name: "title_en", widget: "string" }
+              - { label: "Titolo (Italiano)", name: "title_it", widget: "string" }
+              - { label: "Slug (address: lowercase, no spaces)", name: "slug", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Group (sidebar section, optional)", name: "group", widget: "string", required: false }
+              - { label: "Description (English)", name: "description_en", widget: "text", required: false }
+              - { label: "Descrizione (Italiano)", name: "description_it", widget: "text", required: false }
+              - { label: "Cover image (optional — defaults to the first photo)",
+                  name: "cover", widget: "image", required: false }
+              - label: "Photos and text slides (photo count is calculated automatically)"
+                name: "items"
+                widget: "list"
+                typeKey: "type"
+                types:
+                  - label: "Photo"
+                    name: "photo"
+                    widget: "object"
+                    fields:
+                      - { label: "Image", name: "image", widget: "image" }
+                      - { label: "Caption (English)", name: "caption_en", widget: "string", required: false }
+                      - { label: "Didascalia (Italiano)", name: "caption_it", widget: "string", required: false }
+                  - label: "Text slide"
+                    name: "slide"
+                    widget: "object"
+                    fields:
+                      - { label: "Text (English)", name: "text_en", widget: "text", required: false }
+                      - { label: "Testo (Italiano)", name: "text_it", widget: "text", required: false }
+
+          - label: "Publications"
+            name: "publications"
+            widget: "list"
+            label_singular: "publication"
+            summary: "{{fields.magazine}} — {{fields.article_title}} ({{fields.date}})"
+            fields:
+              - { label: "Related story title", name: "story_title", widget: "string", required: false }
+              - { label: "Magazine", name: "magazine", widget: "string" }
+              - { label: "Article title", name: "article_title", widget: "string" }
+              - { label: "Publication date", name: "date", widget: "string" }
+              - { label: "Country", name: "country", widget: "string", required: false }
+              - { label: "File (image or PDF)", name: "file", widget: "file", required: false }
