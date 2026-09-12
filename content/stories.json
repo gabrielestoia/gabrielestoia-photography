@@ -77,6 +77,27 @@
       "items": [
         {
           "type": "photo",
+          "image": "img/uploads/_mg_6936.jpg"
+        },
+        {
+          "type": "photo",
+          "image": "img/uploads/_mg_3520.jpg"
+        }
+      ],
+      "slug": "Laos",
+      "description_en": "In the heart of southern Laos, along the slow waters of the Mekong and the islands of Si Phan Don, a photographic series captures life suspended between land and river. Fishermen cast nets at dawn through drifting mist, children leap from weathered wooden boats, and floating markets burst with color and voices. Khone Phapheng Falls roar in the background, while village women weave silk near incense-filled Buddhist temples. Each frame captures an ancient rhythm, far from modern time, where daily life becomes visual poetry — suspended in silence, water, and the golden light of dusk.",
+      "description_it": "Nel cuore del sud del Laos, tra le acque lente del Mekong e le isole di Si Phan Don, una serie fotografica racconta la vita sospesa tra terra e fiume. Pescatori all'alba lanciano reti tra la nebbia, bambini si tuffano da barche di legno scolorito, e i mercati galleggianti si animano di colori e voci. Le cascate di Khone Phapheng ruggiscono sullo sfondo, mentre nei villaggi le donne tessono seta accanto a templi buddisti avvolti nell'incenso. Ogni scatto cattura un ritmo antico, lontano dal tempo moderno, dove la quotidianità diventa poesia visiva, sospesa tra silenzio, acqua e luce dorata del tramonto.",
+      "title_en": "Best of Laos",
+      "title_it": "Il meglio del Laos",
+      "location": "Laos",
+      "cover": "img/uploads/_mg_6936.jpg",
+      "year": "2018",
+      "group": "Asia"
+    },
+    {
+      "items": [
+        {
+          "type": "photo",
           "image": "img/india/01.jpg",
           "caption_en": "Chicken market, Kolkata.",
           "caption_it": "Mercato del pollo, Calcutta."
@@ -108,27 +129,6 @@
       "location": "India",
       "cover": "",
       "year": "year TBD",
-      "group": "Asia"
-    },
-    {
-      "items": [
-        {
-          "type": "photo",
-          "image": "img/uploads/_mg_6936.jpg"
-        },
-        {
-          "type": "photo",
-          "image": "img/uploads/_mg_3520.jpg"
-        }
-      ],
-      "slug": "Laos",
-      "description_en": "In the heart of southern Laos, along the slow waters of the Mekong and the islands of Si Phan Don, a photographic series captures life suspended between land and river. Fishermen cast nets at dawn through drifting mist, children leap from weathered wooden boats, and floating markets burst with color and voices. Khone Phapheng Falls roar in the background, while village women weave silk near incense-filled Buddhist temples. Each frame captures an ancient rhythm, far from modern time, where daily life becomes visual poetry — suspended in silence, water, and the golden light of dusk.",
-      "description_it": "Nel cuore del sud del Laos, tra le acque lente del Mekong e le isole di Si Phan Don, una serie fotografica racconta la vita sospesa tra terra e fiume. Pescatori all'alba lanciano reti tra la nebbia, bambini si tuffano da barche di legno scolorito, e i mercati galleggianti si animano di colori e voci. Le cascate di Khone Phapheng ruggiscono sullo sfondo, mentre nei villaggi le donne tessono seta accanto a templi buddisti avvolti nell'incenso. Ogni scatto cattura un ritmo antico, lontano dal tempo moderno, dove la quotidianità diventa poesia visiva, sospesa tra silenzio, acqua e luce dorata del tramonto.",
-      "title_en": "Best of Laos",
-      "title_it": "Il meglio del Laos",
-      "location": "Laos",
-      "cover": "img/uploads/_mg_6936.jpg",
-      "year": "2018",
       "group": "Asia"
     }
   ]
